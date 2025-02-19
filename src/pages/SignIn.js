@@ -5,7 +5,6 @@ import banner02 from '../assets/images/auth/banner02.png';
 import eye from '../assets/images/auth/eye.svg';
 import crossEye from '../assets/images/auth/cross-eye.svg';
 import apple from '../assets/images/auth/Apple.svg';
-import google from '../assets/images/auth/google.svg';
 import logoTitle from '../assets/images/auth/logoTitle.svg';
 import { Link } from 'react-router-dom';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -61,8 +60,6 @@ function SignIn() {
       }
   };
   const handleGoogleLogin = async (response) => {
-    const { credential } = response;
-    console.log("response", response)
     try {
       const result = await axiosInstance.post('/auth/google');
       if (result.status === 200) {
@@ -226,7 +223,7 @@ function SignIn() {
 
                   <div className="mt-2 text-center mt-3">
                     <p className="fs-12 fw-500 text-color">
-                      Don’t have an account?{' '}
+                      Don't have an account?{' '}
                       <Link
                         to="/sign-up"
                         className="text-decoration-none fs-13 fw-600 text-dark"

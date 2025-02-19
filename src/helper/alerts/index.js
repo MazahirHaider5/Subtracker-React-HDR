@@ -78,7 +78,7 @@ export const showConfirmationModal = async (
          ? `<div class="text-start" > ${message}</div><div class="my-2 text-start" ><b>Reason:</b>  ${
               reason ?? "N/A"
            }</div> ${
-              deactivatedBy == "Shadi.Pk"
+              deactivatedBy === "Shadi.Pk"
                  ? ` <div class="text-start">
               You are given warning, next time follow the company policies and terms of service. Otherwise your account will be permanently deactivated/deleted.
                  </div>`

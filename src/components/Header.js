@@ -3,7 +3,6 @@ import Notification from './Notification';
 import Profile from './Profile';
 import { Link, useLocation } from "react-router-dom";
 import Icon from '../assets/images/sidebar/logo.svg';
-import Sidebar_style from '../assets/style/canvasSidebar.css'
 import {
   Offcanvas,
   OffcanvasHeader,
@@ -11,12 +10,9 @@ import {
 } from 'reactstrap'
 import classNames from "classnames";
 import { persistor } from '../redux/configureStore'; 
-import Sidebar from './Sidebar';
 import { setAuth } from '../redux/action';
 import axiosInstance from '../services/Interceptor'
 import { useDispatch } from 'react-redux';
-import sidebarClose from '../assets/images/sidebar/sidebarClose.svg';
-import sidebarOpen from '../assets/images/sidebar/sidebarOpen.svg';
 import openbaricon from '../assets/images/sidebar/baricon.svg';
 import DashboardActive from '../assets/images/sidebar/dashboardActive.svg';
 import Dashboard from '../assets/images/sidebar/dashboard.svg';

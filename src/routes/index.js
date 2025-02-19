@@ -3,7 +3,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PrivateRoute, PublicRoute } from './Routes';
 import Dashboard from '../pages/Dashboard';
-import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Layout from '../Layout';
 import Subscription from '../pages/Subscription';

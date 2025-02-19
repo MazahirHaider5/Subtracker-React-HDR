@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { FormGroup, Button } from 'reactstrap';
 import resetBanner from '../assets/images/auth/resetBanner.png';
 import logoTitle from '../assets/images/auth/logoTitle.svg';
 import eye from '../assets/images/auth/eye.svg'
@@ -8,12 +8,9 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axiosInstance from '../services/Interceptor'
 import { showToast } from "../helper/alerts/index";
-import { useDispatch,useSelector } from 'react-redux';
-import { setUserEmail, setOTPStatus } from '../redux/action';
+import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 function ResetPassword() {
-    const dispatch = useDispatch();
-    const [btnLoader, setBtnLoader] = useState(false);
     const navigate = useNavigate();
     const userEmail = useSelector(state => state.userMailID);
     const validationSchema = Yup.object({
@@ -51,6 +48,7 @@ function ResetPassword() {
     };
     const [isViewPassword, setIsViewPassword] = useState(false);
     const [isViewConfirmPassword, setIsViewConfirmPassword] = useState(false);
+    const [btnLoader, setBtnLoader] = useState(false);
     return (
         <div className='container'>
             <div className='row'>
@@ -60,7 +58,7 @@ function ResetPassword() {
                             <img src={logoTitle} alt='icon' />
                         </div>
                         <h4 className='fs-25 fw-600 mt-5 text-center'>Reset Your Password</h4>
-                        <p className='text-color fs-14 fw-500 text-center my-4'>Here’s a tip: Use a combination of numbers, uppercase,<br /> lowercase and special characters</p>
+                        <p className='text-color fs-14 fw-500 text-center my-4'>Here's a tip: Use a combination of numbers, uppercase,<br /> lowercase and special characters</p>
 
 
                         <Formik
