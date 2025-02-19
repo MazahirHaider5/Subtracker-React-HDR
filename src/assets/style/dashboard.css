@@ -1,0 +1,33 @@
+.rounded-circle-number {
+    width: 73px; 
+    height: 73px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 23px; 
+    font-weight: 600;
+  }
+  .header-icon {
+    position: absolute;
+    left: 24%; 
+
+  }
+  .chart-wrapper {
+    width: 100%; 
+  }
+  
+  .chart-container {
+    width: 100%; 
+  }
+  
+  @media (max-width: 767px) {
+    .chart-wrapper {
+      overflow-x: auto; 
+    }
+  
+    .chart-container {
+      min-width: 600px; 
+    }
+  }
+ 

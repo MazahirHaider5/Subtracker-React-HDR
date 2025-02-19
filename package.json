@@ -1,0 +1,61 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://subtracker.com",
+  "dependencies": {
+    "@react-oauth/google": "^0.12.1",
+    "axios": "^1.7.9",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.7",
+    "cra-template": "1.2.0",
+    "formik": "^2.4.6",
+    "moment": "2.24.0",
+    "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
+    "react-big-calendar": "^1.17.1",
+    "react-bootstrap": "^2.10.7",
+    "react-calendar": "^5.1.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^19.0.0",
+    "react-easy-crop": "^5.2.0",
+    "react-otp-input": "^3.1.1",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.0",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.9.0",
+    "react-slick": "^0.30.3",
+    "reactstrap": "^9.2.3",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^5.1.1",
+    "sass": "^1.57.1",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.15.10",
+    "web-vitals": "^4.2.4",
+    "yup": "^1.6.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

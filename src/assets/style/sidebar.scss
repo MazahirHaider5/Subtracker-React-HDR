@@ -1,0 +1,123 @@
+
+.sidebar-toggleIcon {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  z-index: 9999999;
+  top: 30px;
+  margin-right:-28px
+}
+
+
+.sidebar {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.1rem 1.5rem;
+  width: 25%;
+  height: 100vh;
+  transition: 0.5s all;
+  overflow: hidden;
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-bottom: 1rem;
+    z-index: 2;
+
+    h2.title {
+      font-size: 25px;
+      color: #000000;
+      font-weight: 500;
+    }
+  }
+
+
+  .logoContainer.active {
+    justify-content: flex-start;
+  }
+
+  .toggleIcon {
+    position: absolute;
+    right: 5.6px;
+    top: 1rem;
+    width: 35px;
+    height: 35px;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .contentsContainer {
+    margin-top: 1rem;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
+
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        margin: 0.10rem 0;
+        padding: 0.20rem 0;
+        width: 100%;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        height: 52px;
+
+        img {
+          padding-right: 0.5rem;
+          width: 35px;
+          height: 30px;
+        }
+
+        a {
+          text-decoration: none;
+          color: #757784;
+          font-size: 20px;
+          margin-left: 0.5rem;
+        }
+      }
+
+      li.active {
+        background-color: #758AFF1A;
+        border-left: #758AFF solid 3px;
+
+        a {
+          color: #758AFF;
+        }
+      }
+
+      li:hover {
+        background-color: #758AFF1A;
+        border-left: #758AFF solid 3px;
+        transition: 0.25s;
+
+        a {
+          color: #758AFF;
+        }
+      }
+    }
+  }
+}
+
+.sidebar.active {
+  width: 8.5%;
+  transition: 0.5s all;
+
+  .logoContainer.active h2.title,
+  .contentsContainer .sidebar-text {
+    opacity: 0;
+  }
+}
