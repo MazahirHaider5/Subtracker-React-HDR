@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, Button } from 'reactstrap';
 import OTPInput from "react-otp-input";
 import otpBanner from '../assets/images/auth/otpBanner.png';
 import logoTitle from '../assets/images/auth/logoTitle.svg';

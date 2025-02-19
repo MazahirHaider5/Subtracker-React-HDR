@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../assets/style/globals.css';
 import '../assets/style/dashboard.css';
-
-import Select from "react-select";
 import {
   Card,
   CardBody,

@@ -22,8 +22,6 @@ import subscriptionPlan from '../assets/images/sidebar/subscriptionPlan.svg';
 import subscriptionPlanActive from '../assets/images/sidebar/subscriptionPlanActive.svg';
 import payment from '../assets/images/sidebar/payment.svg';
 import paymentActive from '../assets/images/sidebar/paymentActive.svg';
-import documents from '../assets/images/sidebar/document.svg';
-import documentsActive from '../assets/images/sidebar/documentActive.svg';
 import FAQs from '../assets/images/sidebar/faq.svg';
 import FAQsActive from '../assets/images/sidebar/faqActive.svg';
 import headPhone from '../assets/images/sidebar/headPhone.svg';

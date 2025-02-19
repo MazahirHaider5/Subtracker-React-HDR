@@ -36,9 +36,6 @@ const Profile = () => {
 
   const userData = useSelector(state => state.userData);
   const [isOpenAccountSetting, setIsOpenAccountSetting] = useState(false);
-  const [isAllowBA, setIsAllowBA] = useState(false);
-  const [isAllowTFA, setIsAllowTFA] = useState(false);
-  const [isAllowEmailNotification, setIsAllowEmailNotification] = useState(false);
   const [isOpenPersonalData, setIsOpenPersonalData] = useState(false);
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [isOpenCurrency, setIsOpenCurrency] = useState(false);

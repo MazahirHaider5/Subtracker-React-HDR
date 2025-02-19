@@ -4,7 +4,7 @@ import avatar from '../assets/images/header/avatar.png';
 import bell from '../assets/images/header/bell.svg'
 
 const Notification = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [dropdownOpen, setDropdownOpen] = useState(false); // Unused
 
   return (
     <>

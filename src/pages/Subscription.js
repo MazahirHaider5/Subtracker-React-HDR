@@ -11,9 +11,7 @@ import {
   Table,
   FormGroup,
   Label,
-  Spinner
 } from 'reactstrap';
-import renewal01 from '../assets/images/renewal01.svg';
 import dots from '../assets/images/dots.svg';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../services/Interceptor'

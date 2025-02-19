@@ -26,11 +26,8 @@ const Language = ({ isOpenLanguage, setIsOpenLanguage }) => {
   ];
   const handleLanguage = async () => {
     try {
-      const token = localStorage.getItem("token");
       setBtnLoader(true)
-      const result = await axiosInstance.patch('/users/updateSpecificDetails', { language: selectedLanguage, }
-        
-      );
+      const result = await axiosInstance.patch('/users/updateSpecificDetails', { language: selectedLanguage })
       if (result.status === 200) {
          dispatch(setUserData(result?.data?.user));
         setBtnLoader(false)

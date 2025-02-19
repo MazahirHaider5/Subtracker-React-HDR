@@ -27,18 +27,12 @@ const ChangePassword = ({ isOpenPassword, setIsOpenPassword }) => {
   const [passwordStrength, setPasswordStrength] = useState([false, false, false, false]);
   const userData = useSelector(state => state.userData);
   const [verificationCode, setVerificationCode] = useState(null);
-  const [isViewPassword, setIsViewPassword] = useState(false);
   const [isViewNewPassword, setIsViewNewPassword] = useState(false);
   const [isViewConfirmPassword, setIsViewConfirmPassword] = useState(false);
   const [btnLoader, setBtnLoader] = useState(false);
   const [timer, setTimer] = useState(90);
   const [viewStatus, setViewStatus] = useState("email");
   const dispatch = useDispatch();
-
-  const initialValuesForPassword = {
-    newPassword: '',
-    confirmPassword: '',
-  };
 
   const validationSchemaForPassword = Yup.object({
     newPassword: Yup.string()
@@ -306,7 +300,7 @@ const ChangePassword = ({ isOpenPassword, setIsOpenPassword }) => {
                               id="newPassword"
                               placeholder="Enter New Password"
                               value={values.newPassword}
-                              onChange={(e) => handlePasswordChange(e, setFieldValue, values)}
+                              onChange={(e) => handlePasswordChange(e, setFieldValue)}
                             />
                             <img
                               src={isViewNewPassword ? openLock : lock}
