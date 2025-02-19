@@ -3,7 +3,7 @@ import { setError } from '../redux/action/index';
 import { store } from '../redux/configureStore'; 
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL, 
+  baseURL: process.env.REACT_APP_BACKEND_URL_DEPLOYED, 
   withCredentials: true, 
 });
 axiosInstance.interceptors.request.use(
