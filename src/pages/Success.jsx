@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button } from 'reactstrap';
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import {  setAuth, setUserData } from '../redux/action';

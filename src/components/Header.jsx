@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import Notification from './Notification';
 import Profile from './Profile';
 import { Link, useLocation } from "react-router-dom";
 import Icon from '../assets/images/sidebar/logo.svg';
-import Sidebar_style from '../assets/style/canvasSidebar.css'
 import {
   Offcanvas,
   OffcanvasHeader,
@@ -11,12 +10,9 @@ import {
 } from 'reactstrap'
 import classNames from "classnames";
 import { persistor } from '../redux/configureStore';
-import Sidebar from './Sidebar';
 import { setAuth,setHeaderTitle } from '../redux/action';
 import axiosInstance from '../services/Interceptor'
 import { useSelector, useDispatch } from 'react-redux';
-import sidebarClose from '../assets/images/sidebar/sidebarClose.svg';
-import sidebarOpen from '../assets/images/sidebar/sidebarOpen.svg';
 import openbaricon from '../assets/images/sidebar/baricon.svg';
 import DashboardActive from '../assets/images/sidebar/dashboardActive.svg';
 import Dashboard from '../assets/images/sidebar/dashboard.svg';
@@ -28,8 +24,6 @@ import calendar from '../assets/images/sidebar/calendar.svg';
 import calendarActive from '../assets/images/sidebar/calendarActive.svg';
 import subscriptionPlan from '../assets/images/sidebar/subscriptionPlan.svg';
 import subscriptionPlanActive from '../assets/images/sidebar/subscriptionPlanActive.svg';
-import payment from '../assets/images/sidebar/payment.svg';
-import paymentActive from '../assets/images/sidebar/paymentActive.svg';
 import FAQs from '../assets/images/sidebar/faq.svg';
 import FAQsActive from '../assets/images/sidebar/faqActive.svg';
 import headPhone from '../assets/images/sidebar/headPhone.svg';

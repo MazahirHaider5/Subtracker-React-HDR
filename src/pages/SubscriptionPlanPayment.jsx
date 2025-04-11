@@ -3,7 +3,7 @@ import '../assets/style/globals.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Button, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import masterCard from '../assets/images/masterCard.svg'
 import visaCard from '../assets/images/visaCard.svg'

@@ -32,16 +32,11 @@ import Language from './Language';
 import Currency from './Currency';
 import ChangePassword from './ChangePassword';
 import { persistor } from '../redux/configureStore'; 
-import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
-  const { t } = useTranslation('Translate')
  
   const userData = useSelector(state => state.userData);
   const [isOpenAccountSetting, setIsOpenAccountSetting] = useState(false);
-  const [isAllowBA, setIsAllowBA] = useState(false);
-  const [isAllowTFA, setIsAllowTFA] = useState(false);
-  const [isAllowEmailNotification, setIsAllowEmailNotification] = useState(false);
   const [isOpenPersonalData, setIsOpenPersonalData] = useState(false);
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [isOpenCurrency, setIsOpenCurrency] = useState(false);

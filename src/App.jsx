@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import "../src/assets/style/globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +11,7 @@ function App() {
     useEffect(() => {
         i18n.changeLanguage(getLanguageCode(userData?.language));
 
-    }, [userData])
+    }, [userData, i18n])
 
 
     return (

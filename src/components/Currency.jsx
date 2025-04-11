@@ -7,9 +7,6 @@ import {
  
 } from "reactstrap";
 
-
-import english from '../assets/images/header/english.svg'
-import pak from '../assets/images/header/PK.svg'
 import sw from '../assets/images/header/sw.svg'
 import { showToast } from "../helper/alerts/index";
 import axiosInstance from '../services/Interceptor'
