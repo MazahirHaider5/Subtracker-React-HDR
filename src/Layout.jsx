@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   const [isSidebar, setIsSidebar] = useState(false);
-  const [headerTitle, setHeaderTitle] = useState('');
+  const [headerTitle] = useState('');
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 991);
 
   const isCloseSidebar = (props) => {

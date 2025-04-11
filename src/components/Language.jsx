@@ -7,17 +7,13 @@ import {
 } from "reactstrap";
 import axiosInstance from '../services/Interceptor'
 import english from '../assets/images/header/english.svg'
-import iron from '../assets/images/header/IR.svg'
-import pak from '../assets/images/header/PK.svg'
-import ps from '../assets/images/header/PS.svg'
 import { showToast } from "../helper/alerts/index";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserData } from '../redux/action';
 import { useTranslation } from 'react-i18next';
 import {getLanguageCode} from '../helper/GetLanguageType'
 const Language = ({ isOpenLanguage, setIsOpenLanguage }) => {
-  const { t, i18n } = useTranslation('Translate')
-  const [languageCode, setLanguageCode] = useState('en');
+  const { i18n } = useTranslation('Translate')
   const dispatch = useDispatch();
   const userData = useSelector(state => state.userData);
   const [selectedLanguage, setSelectedLanguage] = useState(userData?.language);
@@ -33,7 +29,6 @@ const Language = ({ isOpenLanguage, setIsOpenLanguage }) => {
 
   const handleLanguage = async () => {
     try {
-      const token = localStorage.getItem("token");
       setBtnLoader(true)
       const result = await axiosInstance.patch('/users/updateSpecificDetails', { language: selectedLanguage, }
       );
@@ -67,8 +62,7 @@ const Language = ({ isOpenLanguage, setIsOpenLanguage }) => {
       
           {languageData.map((item, index) => (
             <div
-              onClick={() => {setSelectedLanguage(item?.language)
-                setLanguageCode(item?.nativeName)}}
+              onClick={() => setSelectedLanguage(item?.language)}
               key={index}
               className={`d-flex justify-content-between align-item-center header-badges header-badges-heading rounded px-2 mx-3 cursor-pointer mt-2 ${item.language === selectedLanguage ? "selected-header-badge" : ""}`}
             >

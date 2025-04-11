@@ -21,25 +21,18 @@ import axiosInstance from '../services/Interceptor'
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { showToast } from "../helper/alerts/index";
-import { useSelector, useDispatch } from 'react-redux';
-import { setUserData } from '../redux/action';
+import { useSelector } from 'react-redux';
 const ChangePassword = ({ isOpenPassword, setIsOpenPassword }) => {
    const { t } = useTranslation('Translate')
   const [passwordStrength, setPasswordStrength] = useState([false, false, false, false]);
   const userData = useSelector(state => state.userData);
   const [verificationCode, setVerificationCode] = useState(null);
-  const [isViewPassword, setIsViewPassword] = useState(false);
   const [isViewNewPassword, setIsViewNewPassword] = useState(false);
   const [isViewConfirmPassword, setIsViewConfirmPassword] = useState(false);
   const [btnLoader, setBtnLoader] = useState(false);
   const [timer, setTimer] = useState(90);
   const [viewStatus, setViewStatus] = useState("email");
-  const dispatch = useDispatch();
 
-  const initialValuesForPassword = {
-    newPassword: '',
-    confirmPassword: '',
-  };
 
   const validationSchemaForPassword = Yup.object({
     newPassword: Yup.string()
