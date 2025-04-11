@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import Cropper from "react-easy-crop";
+import React, { useState, useCallback } from 'react';
+import Cropper from 'react-easy-crop';
 import {
   Offcanvas,
   OffcanvasHeader,
@@ -11,29 +11,26 @@ import {
   Label,
   Modal,
   ModalHeader,
-  ModalBody,
-} from "reactstrap";
-import avatar from "../assets/images/header/avatar.png";
-import mailIcon from "../assets/images/header/email.svg";
-import phonIcon from "../assets/images/header/phone.svg";
-import personIcon from "../assets/images/header/profile.svg";
-import axiosInstance from "../services/Interceptor";
+  ModalBody
+} from 'reactstrap';
+import avatar from '../assets/images/header/avatar.png';
+import mailIcon from '../assets/images/header/email.svg'
+import phonIcon from '../assets/images/header/phone.svg'
+import personIcon from '../assets/images/header/profile.svg'
+import axiosInstance from '../services/Interceptor'
 import { showToast } from "../helper/alerts/index";
-
-import { useSelector, useDispatch } from "react-redux";
-import { Formik, Field, ErrorMessage } from "formik";
-import { setUserData } from "../redux/action";
-import * as Yup from "yup";
-import { useTranslation } from "react-i18next";
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Field, ErrorMessage } from 'formik';
+import { setUserData } from '../redux/action';
+import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
 const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
-  const { t } = useTranslation("Translate");
+  const { t } = useTranslation('Translate')
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userData);
+  const userData = useSelector(state => state.userData);
   const [btnLoader, setBtnLoader] = useState(false);
   const [isOpenImageModal, setIsOpenImageModal] = useState(false);
-  const [oldImg, setOldImg] = useState(
-    userData.photo ? userData?.photo : avatar
-  );
+  const [oldImg, setOldImg] = useState(userData.photo ? userData?.photo : avatar);
   const [croppedImg, setCroppedImg] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
@@ -51,12 +48,12 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
   };
 
   const handleSave = useCallback(() => {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const image = new Image();
     image.src = oldImg;
 
     image.onload = () => {
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext('2d');
       const { width, height } = croppedAreaPixels;
       canvas.width = width;
       canvas.height = height;
@@ -73,15 +70,15 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
         height
       );
 
-      const croppedImage = canvas.toDataURL("image/jpeg");
-      setCroppedImg(croppedImage);
+      const croppedImage = canvas.toDataURL('image/jpeg');
+      setCroppedImg(croppedImage)
       // console.log("croppedImage", croppedImage)
       setIsOpenImageModal(false);
     };
   }, [croppedAreaPixels, oldImg, setIsOpenImageModal]);
 
-  function base64ToBlob(base64, mimeType = "image/jpeg") {
-    const byteString = atob(base64.split(",")[1]); // Decode base64
+  function base64ToBlob(base64, mimeType = 'image/jpeg') {
+    const byteString = atob(base64.split(',')[1]); // Decode base64
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
 
@@ -93,20 +90,15 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
   }
 
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("E-mail address is required"),
+    email: Yup.string().email('Invalid email address').required('E-mail address is required'),
     name: Yup.string()
-      .min(2, "Name must be at least 2 characters")
-      .matches(
-        /^[A-Za-z\s]+$/,
-        "Name cannot contain special characters or numbers"
-      )
-      .required("Name is required"),
+    .min(2, 'Name must be at least 2 characters')
+    .matches(/^[A-Za-z\s]+$/, 'Name cannot contain special characters or numbers')
+    .required('Name is required'),
     phone: Yup.string()
-      .nullable()
-      .matches(/^\+?\d{8,12}$/, "Enter a valid phone number")
-      .notRequired(),
+    .nullable()
+    .matches(/^\+?\d{8,12}$/, 'Enter a valid phone number')
+    .notRequired(),
   });
 
   const initialValues = {
@@ -118,35 +110,36 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
   const handlePersonalData = async (values) => {
     try {
       const token = localStorage.getItem("token");
-      setBtnLoader(true);
+      setBtnLoader(true)
       const formData = new FormData();
       if (croppedImg) {
         const blob = base64ToBlob(croppedImg);
-        formData.append("photo", blob, "cropped-image.jpg");
+        formData.append('photo', blob, 'cropped-image.jpg');
       } else {
-        formData.append("photo", oldImg);
+        formData.append('photo', oldImg);
       }
-      formData.append("email", userData?.email);
-      formData.append("phone", values.phone);
-      formData.append("name", values.name);
+      formData.append('email', userData?.email);
+      formData.append('phone', values.phone);
+      formData.append('name', values.name);
 
-      const result = await axiosInstance.patch("/users/updateUser", formData, {
+
+      const result = await axiosInstance.patch('/users/updateUser', formData, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
       if (result.status === 200) {
         dispatch(setUserData(result?.data?.user));
-        setBtnLoader(false);
+        setBtnLoader(false)
         showToast("Update Successfully", "success", "top-end");
       } else {
-        setBtnLoader(false);
+        setBtnLoader(false)
+
       }
     } catch (error) {
-      setBtnLoader(false);
-      console.error("Error updating user:", error);
+      setBtnLoader(false)
     }
   };
 
@@ -158,32 +151,14 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
         direction="end"
         backdrop={false}
       >
-        <OffcanvasHeader
-          toggle={() => setIsOpenPersonalData(!isOpenPersonalData)}
-          className="border-bottom fs-16"
-        >
+        <OffcanvasHeader toggle={() => setIsOpenPersonalData(!isOpenPersonalData)} className="border-bottom fs-16">
           Personal Data
         </OffcanvasHeader>
         <OffcanvasBody>
           <div className="text-center">
-            <img
-              crossOrigin="anonymous"
-              src={
-                croppedImg
-                  ? croppedImg
-                  : process.env.REACT_APP_BACKEND_URL + "/" + userData.photo
-              }
-              width={80}
-              height={80}
-              className="rounded-circle"
-              alt="User Avatar"
-            />
+            <img crossOrigin="anonymous" src={croppedImg ? croppedImg:process.env.REACT_APP_BACKEND_URL + "/" + userData.photo} width={80} height={80} className='rounded-circle' alt="User Avatar" />
             <p className="fs-16 fw-600 mt-3">{userData?.name}</p>
-            <Button
-              className="fw-600 fs-15 btn-light-purple-color border-0 py-2 rounded-4"
-              type="button"
-              onClick={() => setIsOpenImageModal(!isOpenImageModal)}
-            >
+            <Button className="fw-600 fs-15 btn-light-purple-color border-0 py-2 rounded-4" type="button" onClick={() => setIsOpenImageModal(!isOpenImageModal)}>
               Change
             </Button>
             <Formik
@@ -196,7 +171,7 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
                   {/* Email Field */}
                   <FormGroup>
                     <Label htmlFor="email" className="text-color fs-14 fw-600">
-                      {t("E-mail address")}
+                    {t('E-mail address')} 
                     </Label>
                     <div className="d-flex justify-content-between align-items-center position-relative border rounded-3">
                       <Field
@@ -207,25 +182,15 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
                         placeholder="Email"
                         disabled={true}
                       />
-                      <img
-                        src={mailIcon}
-                        width={15}
-                        height={15}
-                        alt="icon"
-                        className="me-4"
-                      />
+                         <img src={mailIcon} width={15} height={15}  alt="icon" className='me-4' />
                     </div>
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-danger fs-12 mt-1"
-                    />
+                    <ErrorMessage name="email" component="div" className="text-danger fs-12 mt-1" />
                   </FormGroup>
 
                   {/* Name Field */}
                   <FormGroup>
                     <Label htmlFor="name" className="text-color fs-14 fw-600">
-                      {t("Name")}
+                    {t('Name')}  
                     </Label>
                     <div className="d-flex justify-content-between align-items-center position-relative border rounded-3">
                       <Field
@@ -235,49 +200,29 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
                         id="name"
                         placeholder="Name"
                       />
-                      <img
-                        src={personIcon}
-                        width={15}
-                        height={15}
-                        alt="icon"
-                        className="me-4"
-                      />
+                       <img src={personIcon} width={15} height={15}  alt="icon" className='me-4' />
                     </div>
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-danger fs-12 mt-1"
-                    />
+                    <ErrorMessage name="name" component="div" className="text-danger fs-12 mt-1" />
                   </FormGroup>
 
                   {/* Phone Field */}
                   <FormGroup>
                     <Label htmlFor="phone" className="text-color fs-14 fw-600">
-                      {t("Phone No.")}
+                    {t('Phone No.')}  
                     </Label>
                     <div className="d-flex justify-content-between align-items-center position-relative border rounded-3">
                       <Field
                         name="phone"
-                        type="tel"
+                        type="tel" 
                         className="form-control fw-400 fs-12 border-0 ps-4 py-3 shadow-none"
                         id="phone"
                         placeholder="Phone No."
-                        pattern="[0-9+]*"
-                        maxLength={15}
+                        pattern="[0-9+]*" 
+                        maxLength={15} 
                       />
-                      <img
-                        src={phonIcon}
-                        width={15}
-                        height={15}
-                        alt="icon"
-                        className="me-4"
-                      />
+                       <img src={phonIcon} width={15} height={15}  alt="icon" className='me-4' />
                     </div>
-                    <ErrorMessage
-                      name="phone"
-                      component="div"
-                      className="text-danger fs-12 mt-1"
-                    />
+                    <ErrorMessage name="phone" component="div" className="text-danger fs-12 mt-1" />
                   </FormGroup>
 
                   <div className="mt-5 pt-5 text-center">
@@ -293,6 +238,7 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
                       ) : (
                         " Save"
                       )}
+
                     </Button>
                   </div>
                 </Form>
@@ -301,27 +247,12 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
           </div>
         </OffcanvasBody>
       </Offcanvas>
-      <Modal
-        isOpen={isOpenImageModal}
-        toggle={() => setIsOpenImageModal(!isOpenImageModal)}
-      >
-        <ModalHeader
-          toggle={() => setIsOpenImageModal(!isOpenImageModal)}
-          className="border-0"
-        ></ModalHeader>
+      <Modal isOpen={isOpenImageModal} toggle={() => setIsOpenImageModal(!isOpenImageModal)}>
+        <ModalHeader toggle={() => setIsOpenImageModal(!isOpenImageModal)} className='border-0'></ModalHeader>
         <ModalBody>
-          <h2 className="fs-20 fw-600 text-center mt-0">
-            Change Profile Image
-          </h2>
+          <h2 className="fs-20 fw-600 text-center mt-0">Change Profile Image</h2>
           {oldImg ? (
-            <div
-              style={{
-                position: "relative",
-                width: "100%",
-                height: 400,
-                background: "#333",
-              }}
-            >
+            <div style={{ position: 'relative', width: '100%', height: 400, background: '#333' }}>
               <Cropper
                 image={oldImg}
                 crop={crop}
@@ -338,7 +269,7 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
           <div className="text-center mt-3">
             <p
               className="dark-purple cursor-pointer"
-              onClick={() => document.getElementById("hiddenFileInput").click()}
+              onClick={() => document.getElementById('hiddenFileInput').click()}
             >
               Upload New Image
             </p>
@@ -347,15 +278,12 @@ const PersonalData = ({ isOpenPersonalData, setIsOpenPersonalData }) => {
               accept="image/*"
               onChange={handleImageChange}
               id="hiddenFileInput"
-              className="d-none"
+              className='d-none'
             />
           </div>
           <div className="text-center mt-4">
-            <Button
-              type="button"
-              onClick={handleSave}
-              disabled={!croppedAreaPixels}
-              className="fw-500 fs-15 btn-fill-color border-1 border-white py-2 px-5 rounded-4"
+            <Button type='button' onClick={handleSave} disabled={!croppedAreaPixels}
+              className='fw-500 fs-15 btn-fill-color border-1 border-white py-2 px-5 rounded-4'
             >
               Save
             </Button>
