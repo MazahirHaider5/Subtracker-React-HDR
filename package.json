@@ -39,7 +39,6 @@
     "sass": "^1.57.1",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.15.10",
-    "uri-js": "^4.4.1",
     "web-vitals": "^4.2.4",
     "yup": "^1.6.1"
   },
@@ -66,5 +65,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "uri-js": "^4.4.1"
   }
 }
