@@ -56,7 +56,7 @@ const Currency = ({ isOpenCurrency, setIsOpenCurrency }) => {
         <div
         onClick={() => setSelectedCurrency(item?.currency)}
           key={index}
-          className={`d-flex justify-content-between align-item-center header-badges header-badges-heading rounded px-2 mx-3 cursor-pointer mt-2 ${item.currency == selectedCurrency ? "selected-header-badge" : ""}`}
+          className={`d-flex justify-content-between align-item-center header-badges header-badges-heading rounded px-2 mx-3 cursor-pointer mt-2 ${item.currency === selectedCurrency ? "selected-header-badge" : ""}`}
         >
           <p className="pt-3 fs-13 fw-500">
             <img
