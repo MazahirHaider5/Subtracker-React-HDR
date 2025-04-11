@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(
 
       switch (response.status) {
         case 401:
-          store.dispatch(setError(`Error ${response.status}: ${response.data?.message}`));
+          store.dispatch(setError(401));
           break;
         case 403:
           store.dispatch(setError(`Error ${response.status}: ${response.data?.message}`));

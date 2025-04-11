@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html {
     overflow-x: hidden;
     overflow-y: auto;
@@ -6,16 +7,28 @@ html {
     padding: 0px;
     margin: 0px;
  }
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
  body {
-   font-family: 'Poppins', sans-serif;
+   font-family: 'Poppins', sans-serif !important;
    background-color: white !important;
  }
  .rbc-month-view {
-border: none !important;
+   border: none !important;
  }
 .text-color {
-  color: #00000099 ;
+  color: #00000099 !important ;
+}
+.heading-color {
+   color: #000000 !important;
+}
+.sub-heading-color {
+  color:#999999 !important
+}
+.modal-content {
+   border-radius: 15px !important;
+}
+.form-control:disabled {
+   background-color: white !important;
+   /* opacity: 0 !important; */
 }
 .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c  {
    margin-left: 35% !important
@@ -135,7 +148,7 @@ border: none !important;
 }
 .subscriptionBgImg {
    background-image: url("../images/subscriptionPlanBgImg.png");
-   background-size: cover;
+   background-size: 100% 100%; 
    background-position: center;
    background-repeat: no-repeat;
 }
@@ -168,15 +181,24 @@ border: none !important;
 .apexcharts-toolbar {
    display:none !important;
 }
+.table-responsive {
+   min-height: 300px; 
+   max-height: 600px; 
+   overflow-y: auto; 
+   overflow-x: auto; 
+   transition: height 0.3s ease; 
+ }
+   
 .cursor-pointer {
    cursor: pointer;
 }
 .page-heading {
    color: #656566;
-   font-weight: 350 !important;
+   font-weight: 100 !important;
 }
+
  .box-shadow-custom {
-   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25) !important;
+   box-shadow: 0px 0px 4px 0px #00000040 !important;
  }
  
  .text-color-light {
@@ -282,6 +304,10 @@ border: none !important;
  .fs-30 {
     font-size: 30px;
  }
+ .fs-33 {
+   font-size: 33px;
+}
+
  .fs-31 {
     font-size: 31px;
  }
@@ -299,7 +325,7 @@ border: none !important;
  .fs-40 {
     font-size: 40px;
  }
- 
+
  .fw-300 {
     font-weight: 300 !important;
  }
@@ -322,10 +348,15 @@ border: none !important;
  .fw-800 {
     font-weight: 800;
  }
+ input:-webkit-autofill {
+   box-shadow: 0 0 0 1000px #ffffff inset !important; /* Set your desired background color */
+   -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+   transition: background-color 5000s ease-in-out 0s; /* Smooth transition */
+}
 
  .form-control:focus{
-   box-shadow: 0 0 0 1px #2684FF !important;
-   border-color: #2684FF !important;
+   /* box-shadow: 0 0 0 1px #758AFF !important; */
+   /* border-color: #758AFF !important; */
  }
 
 /* Base styles for the list items */
@@ -337,7 +368,7 @@ border: none !important;
    background-color: #3535421A;
  }
  .w-md-50{
-   width: 50% !important;
+   width: 60% !important;
 }
  @media(max-width:768px)
  {
@@ -373,6 +404,9 @@ border: none !important;
 
    .fs-30 {
       font-size: 20px !important;
+   }
+   .fs-33 {
+      font-size: 23px;
    }
 
    .fs-35 {

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import '../assets/style/sidebar.scss';
 import { useDispatch } from 'react-redux';
-import { setAuth } from '../redux/action';
+import { setAuth,setHeaderTitle } from '../redux/action';
 import { persistor } from '../redux/configureStore'; 
 import axiosInstance from '../services/Interceptor'
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,8 @@ import subscriptionPlan from '../assets/images/sidebar/subscriptionPlan.svg';
 import subscriptionPlanActive from '../assets/images/sidebar/subscriptionPlanActive.svg';
 import payment from '../assets/images/sidebar/payment.svg';
 import paymentActive from '../assets/images/sidebar/paymentActive.svg';
+import documents from '../assets/images/sidebar/document.svg';
+import documentsActive from '../assets/images/sidebar/documentActive.svg';
 import FAQs from '../assets/images/sidebar/faq.svg';
 import FAQsActive from '../assets/images/sidebar/faqActive.svg';
 import headPhone from '../assets/images/sidebar/headPhone.svg';
@@ -33,7 +35,7 @@ import privacyActive from '../assets/images/sidebar/privacyActive.svg';
 import logout from '../assets/images/sidebar/logout.svg';
 import sidebarBanner from '../assets/images/sidebar/sidebarBanner.png';
 
-const Sidebar = ({ isCloseSidebar, getTitle }) => {
+const Sidebar = ({ isCloseSidebar }) => {
       const navigate = useNavigate();
   const dispatch = useDispatch();
     const location = useLocation();  // Get the current location (pathname)
@@ -56,8 +58,9 @@ const Sidebar = ({ isCloseSidebar, getTitle }) => {
                     const result = await axiosInstance.post('/auth/logout');
                     if (result.status === 200) {
                       dispatch(setAuth(false));
+                      await persistor.flush();
                       persistor.purge(); 
-                      navigate("/log-in");
+                      navigate("/sign-in");
                       localStorage.clear();
               
                     }
@@ -73,7 +76,7 @@ const Sidebar = ({ isCloseSidebar, getTitle }) => {
                     className="d-flex align-items-center" 
                     onClick={(e) => {
                         handleLogoutClick(e);
-                        getTitle(label);
+                        dispatch(setHeaderTitle(label));
                     }}
                 >
                     <img src={isActive ? iconActive : iconInactive} alt={label} />
@@ -98,13 +101,13 @@ const Sidebar = ({ isCloseSidebar, getTitle }) => {
     return (
         <>
             <div className={` cursor-pointer sidebar-toggleIcon text-end`} onClick={handleCloseMenu}>
-                <img src={closeMenu ? sidebarOpen : sidebarClose} width={40} height={40} alt={closeMenu ? "open" : "close"} />
+                <img src={closeMenu ? sidebarOpen : sidebarClose} width={35} height={35} alt={closeMenu ? "open" : "close"} />
             </div>
 
-            <div className={classNames("sidebar border", { active: closeMenu })}>
+            <div className={classNames("sidebar box-shadow-custom", { active: closeMenu })}>
                 <div className={classNames("logoContainer my-4", { active: closeMenu })}>
                     <img src={Icon} alt="icon" className="logo" width={60} height={60} />
-                    <h2 className="title  ">SubTrackr</h2>
+                    <h2 className="title  ">SubTracker</h2>
                 </div>
                 <div className={classNames("contentsContainer", { active: closeMenu })}>
                     <ul>
@@ -119,8 +122,8 @@ const Sidebar = ({ isCloseSidebar, getTitle }) => {
                         {renderMenuItem("/budget-spending", spendingActive, spending, "Budget & Spending")}
                         {renderMenuItem("/calendar", calendarActive, calendar, "Calendar")}
                         <hr className="w-100 " />
-                        {!closeMenu && <p className="ms-4 my-2  fw-500 text-color fs-18">My Subtrackr Plan</p>}
-                        {renderMenuItem("/manage-payment", paymentActive, payment, "Manage Payment")}
+                        {/* {!closeMenu && <p className="ms-4 my-2  fw-500 text-color fs-18">My Subtracker Plan</p>}
+                        {renderMenuItem("/manage-payment", paymentActive, payment, "Manage Payment")} */}
                         {renderMenuItem("/FAQs", FAQsActive, FAQs, "FAQs")}
                         {renderMenuItem("/contactUs", headPhoneActive, headPhone, "Contact & Support")}
                         {renderMenuItem("/term-of-services", servicesActive, services, "Terms of Service")}
