@@ -131,7 +131,6 @@ const Profile = () => {
     } catch (error) {
     }
   };
-  
 
 
   return (
@@ -143,7 +142,7 @@ const Profile = () => {
           <p className='fs-15 fw-400 mt-2 pt-0 px-2'>{userData?.name}</p>
           <img
             crossOrigin="anonymous"
-            src={userData.photo ? process.env.REACT_APP_BACKEND_URL+"/"+userData.photo : avatar}
+            src={userData.photo.startsWith("http") ? avatar : process.env.REACT_APP_BACKEND_URL+"/"+userData.photo}
             width={40}
             height={40}
             alt="User Avatar"

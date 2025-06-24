@@ -53,7 +53,6 @@ const Contact = () => {
           subject:values?.subject,
           description:values?.description
           });
-          console.log("result",result)
         if (result.status === 200 || result.status === 201) {
           
           setBtnLoader(false);
@@ -87,7 +86,7 @@ const Contact = () => {
     <>
       <p className='page-heading fs-20  '>{t("Need help? Contact our friendly support team for assistance")} <br /> {t("with any inquiries or issues.")}</p>
       <h2 className='fs-20 fw-600 mt-2'> {t("Generate Ticket")}</h2>
-      {/* <h2 className='fs-16 fw-600 mt-2 dark-purple'> Ticket ID: FAWER123456</h2> */}
+      <h2 className='fs-16 fw-600 mt-2 dark-purple'> Ticket ID: FAWER123456</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

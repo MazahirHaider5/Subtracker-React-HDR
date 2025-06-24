@@ -4,7 +4,7 @@ import { store } from '../redux/configureStore';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL, 
-  withCredentials: true, 
+  withCredentials: true,
 });
 axiosInstance.interceptors.request.use(
   (config) => {

@@ -29,6 +29,14 @@ import { useSelector } from 'react-redux';
 import { setSelectedSubscription } from '../redux/action';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+const categoryOptions = [
+  { label: 'Security', value: 'Security' },
+  { label: 'Entertainment', value: 'Entertainment' },
+  { label: 'Transportation', value: 'Transportation' },
+  { label: 'Custom', value: 'Custom' }
+];
+
 const NewSubscription = () => {
   const { t } = useTranslation('Translate')
   const navigate = useNavigate();
@@ -39,6 +47,7 @@ const NewSubscription = () => {
   const [subscriptionDescription, setSubscriptionDescription] = useState('')
   const [subscriptionPrice, setSubscriptionPrice] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
+    const [customCategory, setCustomCategory] = useState('');
   const [selectedBilling, setSelectedBilling] = useState('')
   const [selectedReminder, setSelectedReminder] = useState('')
   const [startDate, setStartDate] = useState(new Date())
@@ -53,22 +62,19 @@ const NewSubscription = () => {
   const [btnLoader, setBtnLoader] = useState(false);
   const [files, setFiles] = useState([]);
   const [reminders, setReminders] = useState([
-    { value: "1", label: "One day" },
-    { value: "2", label: "Five days" },
-    { value: "3", label: "One week" },
-    { value: "4", label: "One month" }
+    { value: "1", label: "Never" },
+    { value: "2", label: "One day before" },
+    { value: "3", label: "Three days before" },
+    { value: "4", label: "One month before" }
   ]);
   const [isFocused, setIsFocused] = useState(false);
   const [isFocusedEnd, setIsFocusedEnd] = useState(false);
 
   
-  const [categories, setCategories] = useState([]);
 
   const [billingCycles, setBillingCycles] = useState([
 
-    { value: "Weekly", label: "Weekly" },
     { value: "Monthly", label: "Monthly" },
-    { value: "Daily", label: "Daily" },
     { value: "Yearly", label: "Yearly" }
   ]);
   const customStyles = {
@@ -92,7 +98,6 @@ const NewSubscription = () => {
 
   useEffect(() => {
     if (!hasFetched.current) {
-      getCategories()
       initializeValues()
       hasFetched.current = true;
     }
@@ -100,7 +105,7 @@ const NewSubscription = () => {
   const initializeValues = () => {
     if (selectedSubscription !== null) {
       setSubscriptionName(selectedSubscription?.subscription_name)
-      // setSelectedCategory({ value: selectedSubscription?.subscription_ctg, label: selectedSubscription?.subscription_ctg })
+      setSelectedCategory({ value: selectedSubscription?.subscription_ctg, label: selectedSubscription?.subscription_ctg })
       setSubscriptionDescription(selectedSubscription?.subscription_desc);
       setStartDate(new Date(selectedSubscription?.subscription_start))
       setRenewalDate(new Date(selectedSubscription?.subscription_end))
@@ -165,35 +170,6 @@ const NewSubscription = () => {
     }
   };
 
-  const getCategories = async () => {
-    try {
-      const response = await axiosInstance.get('/categories/getCategories');
-      if (response.status === 200) {
-        const categoriesArray = response.data?.categories?.map((item) => ({
-          value: item?._id,
-          label: item?.category_name,
-        })) || [];
-
-        if (selectedSubscription !== null) {
-          const selectedCategory = response.data?.categories?.find(
-            (item) => item?._id === selectedSubscription?.subscription_ctg
-          );
-          if (selectedCategory) {
-            setSelectedCategory({
-              value: selectedCategory._id,
-              label: selectedCategory.category_name,
-            });
-          }
-        }
-
-        setCategories(categoriesArray);
-      } else {
-        console.error('Failed to fetch categories: Unexpected response status', response.status);
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching categories:', error?.message || error);
-    }
-  };
   const createSubscription = async () => {
 
     if (
@@ -333,24 +309,36 @@ const NewSubscription = () => {
               />
             </FormGroup>
           </div>
-          <div className='col-12 col-md-6'>
-            <FormGroup>
-              <Label for="name" className='fs-14 fw-500'>
-              {t("Category")}
-              </Label>
-              <Select
-                options={categories}
-                placeholder={t("Select Category")}
-                value={selectedCategory}
-                isSearchable={true}
-                onChange={(selected) => {
-                  setSelectedCategory(selected)
-                }}
-                styles={customStyles}
-              />
-            </FormGroup>
-          </div>
+             <div className="col-12 col-md-6">
+      <FormGroup>
+        <Label for="category" className="fs-14 fw-500">
+          {t("Category")}
+        </Label>
+        <Select
+          options={categoryOptions}
+          placeholder={t("Select Category")}
+          value={selectedCategory}
+          isSearchable={true}
+          onChange={(selected) => {
+            setSelectedCategory(selected);
+            if (selected.value !== 'Custom') {
+              setCustomCategory('');
+            }
+          }}
+          styles={customStyles}
+        />
 
+        {selectedCategory?.value === 'Custom' && (
+          <Input
+            type="text"
+            className="mt-2"
+            placeholder={t("Enter custom category")}
+            value={customCategory}
+            onChange={(e) => setCustomCategory(e.target.value)}
+          />
+        )}
+      </FormGroup>
+    </div>
         </div>
         <div className='row'>
           <div className='col-12'>
