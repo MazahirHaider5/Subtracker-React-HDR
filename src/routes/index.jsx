@@ -27,6 +27,7 @@ import PublicTermOfServices from '../pages/PublicTermOfServices';
 import Success from '../pages/Success';
 import PaymentSuccess from '../pages/PaymentSuccess';
 import PaymentCancel from '../pages/PaymentCancel';
+import UserAccountChecking from '../pages/UserAccountChecking';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
         <Route path="reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
         <Route path="otp" element={<PublicRoute><OTP /></PublicRoute>} />
+        <Route path="user-account-checking" element={<PublicRoute><UserAccountChecking /></PublicRoute>} />
         <Route path="public-term-of-services" element={<PublicRoute><PublicTermOfServices /></PublicRoute>} />
         <Route path="public-privacy-policy" element={<PublicRoute><PublicPrivacyPolicy /></PublicRoute>} />
 

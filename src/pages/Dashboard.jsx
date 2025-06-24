@@ -218,7 +218,7 @@ const Dashboard = () => {
   const getDashboardData = async () => {
     try {
       const result = await axiosInstance.get("/dashboard/dashboardData");
-
+      
       if (result.status === 200) {
 
         setDashboardData(result?.data?.data);
@@ -255,6 +255,7 @@ const Dashboard = () => {
       console.error("Error fetching dashboard data:", error);
     }
   };
+  
   const donutChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -273,20 +274,16 @@ const Dashboard = () => {
     cutout: '92%', // Defines the size of the cutout area
     rotation: 240,
   };
-  function formatDate(dateString) {
-    const date = new Date(dateString);
+function formatDate(dateString) {
+  const date = new Date(dateString);
 
-    // Extract components
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const year = date.getFullYear();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+  const year = date.getFullYear();
 
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${day}.${month}.${year}`;
+}
 
-    // Format as "MM/DD/YYYY HH:mm"
-    return `${month}/${day}/${year} ${hours}:${minutes}`;
-  }
   return (
     <div className='container'>
       <p className='page-heading fs-20'>"{t('Gain valuable insights into your subscription usage and spending habits')}  <br />{t("with our powerful analytics tool.")}"</p>
@@ -356,8 +353,8 @@ const Dashboard = () => {
                   transform: 'translate(-50%, -50%)',
                 }}
               >
-                <div className='fs-30 fw-700 text-dark text-center'>${dountTotalAmount?.total_spendings}</div>
-                <div className='fs-15 fw-400 text-color-light text-center'> {t("of")} ${dountTotalAmount?.total_budget} {t("amount paid")} </div>
+                <div className='fs-30 fw-700 text-dark text-center'>${dashboardData?.totalSpendings}</div>
+                {/* <div className='fs-15 fw-400 text-color-light text-center'> {t("of")} ${dountTotalAmount?.total_budget} {t("amount paid")} </div> */}
               </div>
             </CardBody>
           </Card>
@@ -387,7 +384,7 @@ const Dashboard = () => {
             <div className='col-12 col-md-10 d-flex flex-wrap align-items-center text-start  mb-3 mb-md-0'>
               <img src={index === 0 ? renewal01 : renewal02} alt='icon' className='me-1' width={40} height={40} />
               <p className='mx-3  fs-15 fw-600 mb-0'>{item?.subscription_name}</p>
-              <p className=' text-color mt-3 ms-4 fs-12'>{t("Due Date")}:{formatDate(item?.subscription_end)}</p>
+              <p className=' text-color mt-3 ms-4 fs-12'>{t("Due Date")}: {formatDate(item?.subscription_end)}</p>
             </div>
             <div className='col-12 col-md-2 text-end '>
               <p className='mt-2 fs-15 fw-600 mt-3'>$ {item?.subscription_price}</p>
