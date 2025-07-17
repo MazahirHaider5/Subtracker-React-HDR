@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.6da3b852.css",
-    "main.js": "/static/js/main.7d0af7bf.js",
+    "main.js": "/static/js/main.6af769cb.js",
     "static/media/renewal01.svg": "/static/media/renewal01.7375a10ff48dbc3967b5d50ebf53f0be.svg",
     "static/media/logo.svg": "/static/media/logo.64cb65f7afb3fe5918e91797bee7c494.svg",
     "static/media/ForgotPasswordBanner.png": "/static/media/ForgotPasswordBanner.539591490dd5c17509ec.png",
@@ -11,6 +11,7 @@
     "static/media/renewal02.svg": "/static/media/renewal02.9b20bba30b198616deaf77860fef183f.svg",
     "static/media/otpBanner.png": "/static/media/otpBanner.3bedc753ff91dcb1a5df.png",
     "static/media/banner02.png": "/static/media/banner02.3e10583010d50736d774.png",
+    "static/media/avatar.png": "/static/media/avatar.ef0616d77f6a5a82fade.png",
     "static/media/banner01.png": "/static/media/banner01.c4b7584ee07e2551ac27.png",
     "static/media/logoTitle.png": "/static/media/logoTitle.c4b7584ee07e2551ac27.png",
     "static/media/masterCard.svg": "/static/media/masterCard.8f0f744cf4ae98244dd10de32121753c.svg",
@@ -52,11 +53,11 @@
     "static/media/currency.svg": "/static/media/currency.8f8e4fc535ab461099f4c60c5980aea2.svg",
     "static/media/subscriptionActive.svg": "/static/media/subscriptionActive.5d6ca3fca70588241136af3ceeb3340f.svg",
     "static/media/documentDelete.svg": "/static/media/documentDelete.7456541496ab12503938faca0e8c4408.svg",
+    "index.html": "/index.html",
     "static/media/2FA.svg": "/static/media/2FA.116bc74db7e191341e8fa2a304aed2bb.svg",
     "static/media/subscription.svg": "/static/media/subscription.aece156c7958ea60e0a9cd6616615e81.svg",
     "static/media/breadcrumbHome.svg": "/static/media/breadcrumbHome.1e9c4e5779ee96d0145acf5bc10eaae5.svg",
     "static/media/eye.svg": "/static/media/eye.9c3fdf0a656313ce72d7bcb43051c3a3.svg",
-    "index.html": "/index.html",
     "static/media/bannerImage.svg": "/static/media/bannerImage.771dbc24e2ff81d4949289621db67612.svg",
     "static/media/headPhone.svg": "/static/media/headPhone.5b7164d6dafce9c2257769f05e24b643.svg",
     "static/media/headPhoneActive.svg": "/static/media/headPhoneActive.965fe8f9f18af0866f8140ee3c38c83b.svg",
@@ -86,10 +87,10 @@
     "static/media/breadcrumbArrowRight.svg": "/static/media/breadcrumbArrowRight.659abca301449eba5259b5c74bb3c5ba.svg",
     "static/media/checkboxEmpty.svg": "/static/media/checkboxEmpty.00eff4d0ebf7d114640107c48ddeb8f9.svg",
     "main.6da3b852.css.map": "/static/css/main.6da3b852.css.map",
-    "main.7d0af7bf.js.map": "/static/js/main.7d0af7bf.js.map"
+    "main.6af769cb.js.map": "/static/js/main.6af769cb.js.map"
   },
   "entrypoints": [
     "static/css/main.6da3b852.css",
-    "static/js/main.7d0af7bf.js"
+    "static/js/main.6af769cb.js"
   ]
 }
